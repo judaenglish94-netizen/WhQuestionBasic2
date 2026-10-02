@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English WH-Questions Quiz</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#4F46E5',
+                            lightBlue: '#E0E7FF',
+                            purple: '#7C3AED',
+                            teal: '#0D9488',
+                            amber: '#F59E0B',
+                            coral: '#FF6B6B',
+                            mint: '#10B981',
+                            softBg: '#EEF2FF'
+                        }
+                    },
+                    fontFamily: {
+                        fredoka: ['Fredoka', 'sans-serif'],
+                        sans: ['Quicksand', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .heading-font {
+            font-family: 'Fredoka', sans-serif;
+        }
+        /* Custom scrollbars for internal content */
+        .custom-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 8px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 8px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        /* Glassmorphism background effect */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(10px);
+        }
+        /* Pulse gentle animation */
+        @keyframes gentlePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+        .animate-gentle {
+            animation: gentlePulse 2s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center p-2 sm:p-4 min-h-screen text-slate-800">
+
+    <!-- App Container Fixated inside Viewport Frame -->
+    <div class="w-full max-w-4xl h-[94vh] sm:h-[90vh] glass-card rounded-3xl shadow-2xl flex flex-col overflow-hidden relative border-4 border-white/60">
+        
+        <!-- Header Bar -->
+        <header class="bg-gradient-to-r from-indigo-600 via-purple-600 to-teal-500 text-white px-5 py-3.5 flex justify-between items-center shrink-0 shadow-md">
+            <div class="flex items-center gap-2">
+                <div class="bg-white/20 p-2 rounded-xl backdrop-blur-sm">
+                    <i data-lucide="brain-circuit" class="w-6 h-6 text-yellow-300"></i>
+                </div>
+                <div>
+                    <h1 class="heading-font text-xl sm:text-2xl font-bold tracking-wide flex items-center gap-2">
+                        WH-Questions <span class="text-xs bg-yellow-400 text-slate-900 px-2 py-0.5 rounded-full font-sans uppercase font-extrabold tracking-wider">Quiz</span>
+                    </h1>
+                    <p class="text-xs text-indigo-100 hidden sm:block">Aprenda a perguntar em Inglês de forma divertida!</p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-2">
+                <!-- Navigation Drawer Toggle (Visible only in Quiz mode) -->
+                <button id="sidebarToggleBtn" onclick="toggleSidebar()" class="hidden bg-white/20 hover:bg-white/30 text-white px-3 py-1.5 rounded-xl font-medium text-sm flex items-center gap-1.5 transition-all">
+                    <i data-lucide="layout-grid" class="w-4 h-4"></i>
+                    <span class="hidden sm:inline">Questões</span>
+                </button>
+                <button onclick="showStudyScreen()" class="bg-indigo-800/40 hover:bg-indigo-800/60 text-white px-3 py-1.5 rounded-xl font-medium text-sm flex items-center gap-1.5 transition-all" title="Revisar Matéria">
+                    <i data-lucide="book-open" class="w-4 h-4"></i>
+                    <span class="hidden sm:inline">Lição</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- SCREEN 1: Study & Introduction Screen -->
+        <div id="studyScreen" class="flex-1 flex flex-col p-4 sm:p-6 overflow-hidden">
+            <div class="text-center mb-4 shrink-0">
+                <h2 class="heading-font text-2xl sm:text-3xl text-indigo-700 font-bold">As Palavras Mágicas das Perguntas! ✨</h2>
+                <p class="text-slate-600 text-sm sm:text-base mt-1">Revise os conceitos antes de iniciar o quiz super divertido de 40 desafios!</p>
+            </div>
+
+            <!-- Scrollable Lesson Content -->
+            <div class="flex-1 overflow-y-auto custom-scroll pr-2 space-y-4 text-slate-700 text-sm sm:text-base">
+                
+                <!-- WHAT Card -->
+                <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="bg-amber-500 text-white font-bold px-3 py-1 rounded-xl text-lg heading-font">WHAT</span>
+                        <span class="text-amber-800 font-semibold text-lg">= O que? / Qual?</span>
+                    </div>
+                    <p class="mb-2 text-slate-600">Usado para perguntar sobre <strong>coisas, objetos, ações, animais ou informações gerais</strong>.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs sm:text-sm bg-white/80 p-3 rounded-xl border border-amber-100">
+                        <div><strong>🔑 Palavras-chave:</strong> Things (coisas), Name, Color, Time, Hobby.</div>
+                        <div><strong>⚡ Verbos comuns:</strong> is, are, do, like, play.</div>
+                        <div class="col-span-full mt-1 text-amber-900">
+                            <strong>💬 Exemplos:</strong><br>
+                            • <em>What is your favorite color?</em> (Qual é a sua cor favorita?)<br>
+                            • <em>What do you eat for lunch?</em> (O que você come no almoço?)
+                        </div>
+                    </div>
+                </div>
+
+                <!-- WHERE Card -->
+                <div class="bg-emerald-50 border-2 border-emerald-200 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="bg-emerald-500 text-white font-bold px-3 py-1 rounded-xl text-lg heading-font">WHERE</span>
+                        <span class="text-emerald-800 font-semibold text-lg">= Onde? / Aonde?</span>
+                    </div>
+                    <p class="mb-2 text-slate-600">Usado para perguntar sobre <strong>lugares, localizações e posições</strong>.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs sm:text-sm bg-white/80 p-3 rounded-xl border border-emerald-100">
+                        <div><strong>🔑 Palavras-chave:</strong> School, Park, House, City, Room.</div>
+                        <div><strong>⚡ Verbos comuns:</strong> is, live, go, study, work.</div>
+                        <div class="col-span-full mt-1 text-emerald-900">
+                            <strong>💬 Exemplos:</strong><br>
+                            • <em>Where do you live?</em> (Onde você mora?)<br>
+                            • <em>Where is the pencil?</em> (Onde está o lápis?)
+                        </div>
+                    </div>
+                </div>
+
+                <!-- WHEN Card -->
+                <div class="bg-indigo-50 border-2 border-indigo-200 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="bg-indigo-500 text-white font-bold px-3 py-1 rounded-xl text-lg heading-font">WHEN</span>
+                        <span class="text-indigo-800 font-semibold text-lg">= Quando?</span>
+                    </div>
+                    <p class="mb-2 text-slate-600">Usado para perguntar sobre <strong>tempo, datas, dias, horas ou momentos</strong>.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs sm:text-sm bg-white/80 p-3 rounded-xl border border-indigo-100">
+                        <div><strong>🔑 Palavras-chave:</strong> Birthday, Today, Tomorrow, Months, Time, Days.</div>
+                        <div><strong>⚡ Verbos comuns:</strong> is, start, finish, arrive, go.</div>
+                        <div class="col-span-full mt-1 text-indigo-900">
+                            <strong>💬 Exemplos:</strong><br>
+                            • <em>When is your birthday?</em> (Quando é o seu aniversário?)<br>
+                            • <em>When does the class start?</em> (Quando a aula começa?)
+                        </div>
+                    </div>
+                </div>
+
+                <!-- WHO Card -->
+                <div class="bg-rose-50 border-2 border-rose-200 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="bg-rose-500 text-white font-bold px-3 py-1 rounded-xl text-lg heading-font">WHO</span>
+                        <span class="text-rose-800 font-semibold text-lg">= Quem?</span>
+                    </div>
+                    <p class="mb-2 text-slate-600">Usado para perguntar exclusivamente sobre <strong>pessoas ou personagens</strong>.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs sm:text-sm bg-white/80 p-3 rounded-xl border border-rose-100">
+                        <div><strong>🔑 Palavras-chave:</strong> Teacher, Friend, Mother, Doctor, Person, Boy, Girl.</div>
+                        <div><strong>⚡ Verbos comuns:</strong> is, are, called, teaches, plays.</div>
+                        <div class="col-span-full mt-1 text-rose-900">
+                            <strong>💬 Exemplos:</strong><br>
+                            • <em>Who is your best friend?</em> (Quem é seu melhor amigo?)<br>
+                            • <em>Who is that teacher?</em> (Quem é aquela professora?)
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Start Button Box -->
+            <div class="pt-4 shrink-0 flex justify-center border-t border-slate-100 mt-2">
+                <button onclick="startQuiz()" class="animate-gentle bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-bold text-lg px-8 py-3.5 rounded-2xl shadow-lg hover:shadow-xl transition-all flex items-center gap-3 heading-font tracking-wide">
+                    <span>COMEÇAR O QUIZ!</span>
+                    <i data-lucide="sparkles" class="w-6 h-6 text-yellow-300"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- SCREEN 2: Quiz Engine Screen -->
+        <div id="quizScreen" class="hidden flex-1 flex flex-col p-4 sm:p-6 overflow-hidden relative">
+            
+            <!-- Quiz Info Subheader -->
+            <div class="flex justify-between items-center mb-3 pb-2 border-b border-slate-200 shrink-0">
+                <div class="flex items-center gap-2">
+                    <span id="partBadge" class="bg-indigo-100 text-indigo-700 font-bold px-3 py-1 rounded-xl text-xs sm:text-sm">
+                        Parte 1: Escolha Múltipla
+                    </span>
+                    <span id="questionNum" class="heading-font text-slate-700 font-bold text-sm sm:text-base">
+                        Questão 1 de 40
+                    </span>
+                </div>
+                
+                <!-- Score & Timer Pill -->
+                <div class="flex items-center gap-3">
+                    <div class="flex items-center gap-1 text-slate-600 text-xs sm:text-sm bg-slate-100 px-3 py-1 rounded-xl">
+                        <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-500"></i>
+                        <span id="scoreCounter" class="font-bold text-slate-800">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="w-full bg-slate-100 rounded-full h-2.5 mb-4 shrink-0 overflow-hidden">
+                <div id="progressBar" class="bg-gradient-to-r from-indigo-500 to-teal-400 h-2.5 rounded-full transition-all duration-300" style="width: 2.5%"></div>
+            </div>
+
+            <!-- Question & Interaction Container (Internal Scroll if needed) -->
+            <div class="flex-1 overflow-y-auto custom-scroll pr-1 flex flex-col justify-between">
+                
+                <div class="space-y-4 my-auto">
+                    <!-- Context Card -->
+                    <div id="contextBox" class="bg-indigo-50/70 border border-indigo-100 rounded-2xl p-4 flex items-start gap-3">
+                        <div class="p-2 bg-indigo-500 text-white rounded-xl shrink-0 mt-0.5">
+                            <i data-lucide="message-square-quote" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-indigo-500 block mb-0.5">Contexto / Resposta de Dica:</span>
+                            <p id="contextText" class="text-slate-800 font-medium text-base sm:text-lg">
+                                Loading question...
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Question Prompt -->
+                    <div class="bg-white border-2 border-slate-100 shadow-sm rounded-2xl p-4 sm:p-5">
+                        <h3 id="questionPrompt" class="heading-font text-lg sm:text-2xl text-slate-800 font-bold">
+                            Loading question text...
+                        </h3>
+
+                        <!-- PART 1: Multiple Choice Options Container -->
+                        <div id="optionsContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
+                            <!-- Injected dynamically via JS -->
+                        </div>
+
+                        <!-- PART 2: Fill in the Blank Input Container -->
+                        <div id="fillContainer" class="hidden mt-4">
+                            <label for="fillInput" class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">
+                                Escreva a palavra WH correta (What, Where, When, Who):
+                            </label>
+                            <div class="flex gap-2">
+                                <input type="text" id="fillInput" autocomplete="off" placeholder="Digite aqui..." 
+                                    class="w-full px-4 py-3 text-lg rounded-xl border-2 border-slate-300 focus:border-indigo-500 focus:outline-none transition-colors heading-font uppercase">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Explanation Feedback Box -->
+                    <div id="feedbackBox" class="hidden rounded-2xl p-4 border transition-all">
+                        <div class="flex items-start gap-3">
+                            <div id="feedbackIcon" class="p-2 rounded-xl text-white shrink-0">
+                                <i data-lucide="info" class="w-5 h-5"></i>
+                            </div>
+                            <div class="space-y-1">
+                                <h4 id="feedbackTitle" class="heading-font font-bold text-base">Feedback</h4>
+                                <p id="feedbackText" class="text-sm text-slate-700 leading-relaxed"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Quiz Bottom Controls -->
+            <div class="pt-4 shrink-0 border-t border-slate-200 mt-2 flex justify-between items-center gap-2">
+                <button id="prevBtn" onclick="navigateQuestion(-1)" class="px-4 py-2.5 rounded-xl border-2 border-slate-200 hover:bg-slate-100 font-semibold text-slate-600 text-sm flex items-center gap-1 transition-all disabled:opacity-40 disabled:cursor-not-allowed">
+                    <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                    <span>Anterior</span>
+                </button>
+
+                <button id="checkBtn" onclick="checkCurrentAnswer()" class="px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm flex items-center gap-2 transition-all shadow-md hover:shadow-lg">
+                    <i data-lucide="check-circle" class="w-4 h-4"></i>
+                    <span>Verificar Resposta</span>
+                </button>
+
+                <button id="nextBtn" onclick="navigateQuestion(1)" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-900 text-white font-semibold text-sm flex items-center gap-1 transition-all">
+                    <span>Próxima</span>
+                    <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                </button>
+            </div>
+
+        </div>
+
+        <!-- SCREEN 3: Results Screen -->
+        <div id="resultsScreen" class="hidden flex-1 flex flex-col p-6 overflow-y-auto custom-scroll text-center justify-center items-center">
+            <div class="w-20 h-20 rounded-full bg-gradient-to-tr from-yellow-400 to-amber-500 flex items-center justify-center text-white shadow-xl mb-4 animate-bounce">
+                <i data-lucide="trophy" class="w-10 h-10"></i>
+            </div>
+
+            <h2 class="heading-font text-3xl sm:text-4xl font-bold text-slate-800 mb-2">Parabéns! Quiz Concluído! 🎉</h2>
+            <p id="resultSubtitle" class="text-slate-600 mb-6">Você completou todas as 40 questões do desafio.</p>
+
+            <!-- Score Cards -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 w-full max-w-lg mb-8">
+                <div class="bg-indigo-50 border border-indigo-100 p-4 rounded-2xl">
+                    <span class="text-xs uppercase font-bold text-indigo-500 tracking-wider block">Pontuação</span>
+                    <span id="finalScore" class="heading-font text-3xl font-bold text-indigo-700">0/40</span>
+                </div>
+                <div class="bg-emerald-50 border border-emerald-100 p-4 rounded-2xl">
+                    <span class="text-xs uppercase font-bold text-emerald-500 tracking-wider block">Aproveitamento</span>
+                    <span id="finalPercentage" class="heading-font text-3xl font-bold text-emerald-700">0%</span>
+                </div>
+                <div class="col-span-2 sm:col-span-1 bg-amber-50 border border-amber-100 p-4 rounded-2xl">
+                    <span class="text-xs uppercase font-bold text-amber-500 tracking-wider block">Desempenho</span>
+                    <span id="finalBadge" class="heading-font text-xl font-bold text-amber-700 mt-1 block">Excelente!</span>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-wrap justify-center gap-4">
+                <button onclick="restartQuiz()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-6 py-3 rounded-2xl flex items-center gap-2 shadow-lg transition-all">
+                    <i data-lucide="rotate-ccw" class="w-5 h-5"></i>
+                    <span>Refazer Quiz Inteiro</span>
+                </button>
+                <button onclick="showStudyScreen()" class="bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold px-6 py-3 rounded-2xl flex items-center gap-2 transition-all">
+                    <i data-lucide="book-open" class="w-5 h-5"></i>
+                    <span>Revisar Lição</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Drawer Side Panel for Quick Navigation -->
+        <div id="drawerOverlay" onclick="toggleSidebar()" class="hidden absolute inset-0 bg-slate-900/40 backdrop-blur-xs z-20 transition-opacity"></div>
+        <div id="sidebarDrawer" class="absolute top-0 right-0 bottom-0 w-80 max-w-[85%] glass-card z-30 shadow-2xl border-l border-slate-200 flex flex-col transform translate-x-full transition-transform duration-300 ease-in-out">
+            <div class="p-4 bg-indigo-600 text-white flex justify-between items-center shrink-0">
+                <div class="flex items-center gap-2">
+                    <i data-lucide="list-ordered" class="w-5 h-5"></i>
+                    <h3 class="heading-font font-bold text-lg">Mapa de Questões</h3>
+                </div>
+                <button onclick="toggleSidebar()" class="text-white/80 hover:text-white p-1">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+
+            <!-- Legend -->
+            <div class="p-3 bg-slate-50 border-b border-slate-200 text-xs flex justify-around text-slate-600 font-medium shrink-0">
+                <span class="flex items-center gap-1"><span class="w-3 h-3 rounded-full bg-slate-200 border border-slate-400"></span> Pendente</span>
+                <span class="flex items-center gap-1"><span class="w-3 h-3 rounded-full bg-emerald-500"></span> Correta</span>
+                <span class="flex items-center gap-1"><span class="w-3 h-3 rounded-full bg-rose-500"></span> Incorreta</span>
+            </div>
+
+            <!-- Questions Grid Drawer -->
+            <div class="flex-1 overflow-y-auto custom-scroll p-4 space-y-4">
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Parte 1 - Múltipla Escolha (1-20)</h4>
+                    <div id="drawerGridP1" class="grid grid-cols-5 gap-2">
+                        <!-- Items 1-20 injected here -->
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Parte 2 - Completar Lacuna (21-40)</h4>
+                    <div id="drawerGridP2" class="grid grid-cols-5 gap-2">
+                        <!-- Items 21-40 injected here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        /* ==========================================================================
+           QUIZ DATA (40 QUESTIONS TOTAL)
+           Questions 1-20: Multiple Choice
+           Questions 21-40: Fill in the Blank
+           ========================================================================== */
+        const quizData = [
+            // --- PARTE 1: MÚLTIPLA ESCOLHA (1 a 20) ---
+            {
+                id: 1,
+                type: 'mc',
+                prompt: "___ is your name?",
+                context: "My name is Lucas.",
+                options: ["What", "Where", "When", "Who"],
+                answer: "What",
+                explain: "Usamos <strong>WHAT</strong> para perguntar 'Qual' é o seu nome (pedindo uma informação sobre uma coisa/nome)."
+            },
+            {
+                id: 2,
+                type: 'mc',
+                prompt: "___ do you live?",
+                context: "I live in São Paulo.",
+                options: ["Who", "When", "Where", "What"],
+                answer: "Where",
+                explain: "Usamos <strong>WHERE</strong> porque a resposta fala de um lugar ('in São Paulo')."
+            },
+            {
+                id: 3,
+                type: 'mc',
+                prompt: "___ is that boy over there?",
+                context: "He is my brother, Leo.",
+                options: ["Where", "Who", "What", "When"],
+                answer: "Who",
+                explain: "Usamos <strong>WHO</strong> para perguntar sobre pessoas ('meu irmão Leo')."
+            },
+            {
+                id: 4,
+                type: 'mc',
+                prompt: "___ is your birthday?",
+                context: "It is in May.",
+                options: ["When", "Where", "Who", "What"],
+                answer: "When",
+                explain: "Usamos <strong>WHEN</strong> para perguntar sobre datas e tempo ('em Maio')."
+            },
+            {
+                id: 5,
+                type: 'mc',
+                prompt: "___ color is your backpack?",
+                context: "It is blue and yellow.",
+                options: ["Where", "Who", "When", "What"],
+                answer: "What",
+                explain: "Usamos <strong>WHAT</strong> para perguntar 'Qual' é a cor da sua mochila."
+            },
+            {
+                id: 6,
+                type: 'mc',
+                prompt: "___ is the English teacher?",
+                context: "Mrs. Sarah is in the classroom.",
+                options: ["Where", "When", "What", "Who"],
+                answer: "Who",
+                explain: "A pergunta quer saber 'Quem' é a professora de inglês ('Mrs. Sarah')."
+            },
+            {
+                id: 7,
+                type: 'mc',
+                prompt: "___ are my keys?",
+                context: "They are on the kitchen table.",
+                options: ["When", "Where", "Who", "What"],
+                answer: "Where",
+                explain: "Usamos <strong>WHERE</strong> para perguntar a localização de objetos ('na mesa da cozinha')."
+            },
+            {
+                id: 8,
+                type: 'mc',
+                prompt: "___ does the movie start?",
+                context: "It starts at 7 o'clock.",
+                options: ["Where", "Who", "When", "What"],
+                answer: "When",
+                explain: "Usamos <strong>WHEN</strong> para saber o horário/tempo de um evento ('às 7 horas')."
+            },
+            {
+                id: 9,
+                type: 'mc',
+                prompt: "___ is your favorite food?",
+                context: "I love delicious pizza!",
+                options: ["What", "Where", "Who", "When"],
+                answer: "What",
+                explain: "Usamos <strong>WHAT</strong> para perguntar 'Qual' comida favorita você gosta."
+            },
+            {
+                id: 10,
+                type: 'mc',
+                prompt: "___ is helping you with homework?",
+                context: "My mom is helping me.",
+                options: ["When", "Where", "What", "Who"],
+                answer: "Who",
+                explain: "Usamos <strong>WHO</strong> pois estamos nos referindo a uma pessoa ('minha mãe')."
+            },
+            {
+                id: 11,
+                type: 'mc',
+                prompt: "___ are you going this weekend?",
+                context: "I am going to the beach.",
+                options: ["Where", "What", "Who", "When"],
+                answer: "Where",
+                explain: "Usamos <strong>WHERE</strong> porque a resposta indica um destino/lugar ('a praia')."
+            },
+            {
+                id: 12,
+                type: 'mc',
+                prompt: "___ do you go to bed?",
+                context: "I go to bed at 9:00 PM.",
+                options: ["Who", "When", "Where", "What"],
+                answer: "When",
+                explain: "Usamos <strong>WHEN</strong> para indicar momento ou horário de ir dormir ('às 21h')."
+            },
+            {
+                id: 13,
+                type: 'mc',
+                prompt: "___ is that girl with the red hat?",
+                context: "That is my cousin Maria.",
+                options: ["Where", "What", "Who", "When"],
+                answer: "Who",
+                explain: "Usamos <strong>WHO</strong> para identificar uma pessoa ('minha prima Maria')."
+            },
+            {
+                id: 14,
+                type: 'mc',
+                prompt: "___ is in the toy box?",
+                context: "There are blocks and balls.",
+                options: ["What", "Where", "Who", "When"],
+                answer: "What",
+                explain: "Usamos <strong>WHAT</strong> para perguntar quais coisas estão dentro da caixa."
+            },
+            {
+                id: 15,
+                type: 'mc',
+                prompt: "___ is the dog sleeping?",
+                context: "It is sleeping under the bed.",
+                options: ["When", "Who", "Where", "What"],
+                answer: "Where",
+                explain: "Usamos <strong>WHERE</strong> para perguntar o local onde o cachorro está dormindo ('embaixo da cama')."
+            },
+            {
+                id: 16,
+                type: 'mc',
+                prompt: "___ is the soccer game?",
+                context: "It is on Saturday morning.",
+                options: ["When", "Where", "Who", "What"],
+                answer: "When",
+                explain: "Usamos <strong>WHEN</strong> para perguntar o dia/momento do jogo ('sábado de manhã')."
+            },
+            {
+                id: 17,
+                type: 'mc',
+                prompt: "___ is your school principal?",
+                context: "Mr. Oliver is our principal.",
+                options: ["What", "Where", "When", "Who"],
+                answer: "Who",
+                explain: "Usamos <strong>WHO</strong> para perguntar sobre quem é a pessoa responsável ('Mr. Oliver')."
+            },
+            {
+                id: 18,
+                type: 'mc',
+                prompt: "___ do you want to eat for breakfast?",
+                context: "I want pancakes and milk.",
+                options: ["Where", "What", "When", "Who"],
+                answer: "What",
+                explain: "Usamos <strong>WHAT</strong> para escolher o item ou opção de alimento."
+            },
+            {
+                id: 19,
+                type: 'mc',
+                prompt: "___ is the library?",
+                context: "It is next to the science lab.",
+                options: ["Where", "Who", "When", "What"],
+                answer: "Where",
+                explain: "Usamos <strong>WHERE</strong> para determinar a localização da biblioteca ('ao lado do laboratório')."
+            },
+            {
+                id: 20,
+                type: 'mc',
+                prompt: "___ do summer holidays start?",
+                context: "They start in December.",
+                options: ["Who", "What", "When", "Where"],
+                answer: "When",
+                explain: "Usamos <strong>WHEN</strong> para perguntar sobre a época ou mês de início das férias ('em Dezembro')."
+            },
+
+            // --- PARTE 2: COMPLETAR A LACUNA (21 a 40) ---
+            {
+                id: 21,
+                type: 'fill',
+                prompt: "___ is your best friend?",
+                context: "Answer: Julia is my best friend.",
+                answer: "Who",
+                explain: "A resposta fala de uma pessoa ('Julia'), logo a pergunta deve começar com <strong>WHO</strong> (Quem)."
+            },
+            {
+                id: 22,
+                type: 'fill',
+                prompt: "___ is the supermarket?",
+                context: "Answer: It is near the park.",
+                answer: "Where",
+                explain: "A resposta descreve um lugar/localização ('perto do parque'), então usamos <strong>WHERE</strong> (Onde)."
+            },
+            {
+                id: 23,
+                type: 'fill',
+                prompt: "___ time do you wake up?",
+                context: "Answer: At 6:30 AM.",
+                answer: "What",
+                explain: "A expressão de horário utiliza <strong>WHAT</strong> time (Que horas / Qual horário)."
+            },
+            {
+                id: 24,
+                type: 'fill',
+                prompt: "___ do you have gym class?",
+                context: "Answer: On Tuesdays and Thursdays.",
+                answer: "When",
+                explain: "A resposta informa os dias da semana, indicando tempo/data, então usamos <strong>WHEN</strong> (Quando)."
+            },
+            {
+                id: 25,
+                type: 'fill',
+                prompt: "___ is singing on the stage?",
+                context: "Answer: The famous singer.",
+                answer: "Who",
+                explain: "Refere-se a alguém/uma pessoa ('O cantor famoso'), por isso a palavra correta é <strong>WHO</strong> (Quem)."
+            },
+            {
+                id: 26,
+                type: 'fill',
+                prompt: "___ is inside your pencil case?",
+                context: "Answer: Erasers, pens, and a ruler.",
+                answer: "What",
+                explain: "Pergunta sobre quais objetos/coisas estão no estojo, usando <strong>WHAT</strong> (O que / Quais)."
+            },
+            {
+                id: 27,
+                type: 'fill',
+                prompt: "___ is the cat?",
+                context: "Answer: It is on top of the roof.",
+                answer: "Where",
+                explain: "Informa a localização do gato ('no telhado'), exigindo <strong>WHERE</strong> (Onde)."
+            },
+            {
+                id: 28,
+                type: 'fill',
+                prompt: "___ is Christmas celebrated?",
+                context: "Answer: On December 25th.",
+                answer: "When",
+                explain: "Menciona uma data específica no ano, exigindo a pergunta sobre tempo com <strong>WHEN</strong> (Quando)."
+            },
+            {
+                id: 29,
+                type: 'fill',
+                prompt: "___ is your English teacher?",
+                context: "Answer: Mr. Davis.",
+                answer: "Who",
+                explain: "Identifica o professor por nome (pessoa), sendo assim usamos <strong>WHO</strong> (Quem)."
+            },
+            {
+                id: 30,
+                type: 'fill',
+                prompt: "___ is your favorite sport?",
+                context: "Answer: Basketball is my favorite.",
+                answer: "What",
+                explain: "Pergunta sobre uma preferência/coisa ('Basquete'), utilizando <strong>WHAT</strong> (Qual)."
+            },
+            {
+                id: 31,
+                type: 'fill',
+                prompt: "___ are the kids playing?",
+                context: "Answer: They are playing in the backyard.",
+                answer: "Where",
+                explain: "Aponta o lugar onde as crianças brincam ('no quintal'), por isso a resposta é <strong>WHERE</strong> (Onde)."
+            },
+            {
+                id: 32,
+                type: 'fill',
+                prompt: "___ will the school trip happen?",
+                context: "Answer: Next Friday.",
+                answer: "When",
+                explain: "Refere-se ao dia em que ocorrerá o passeio ('próxima sexta-feira'), exigindo <strong>WHEN</strong> (Quando)."
+            },
+            {
+                id: 33,
+                type: 'fill',
+                prompt: "___ is that man sitting near the door?",
+                context: "Answer: He is my uncle John.",
+                answer: "Who",
+                explain: "Quer saber a identidade do homem ('meu tio John'), logo usamos <strong>WHO</strong> (Quem)."
+            },
+            {
+                id: 34,
+                type: 'fill',
+                prompt: "___ do you like to do on rainy days?",
+                context: "Answer: I like to read comic books.",
+                answer: "What",
+                explain: "Pergunta sobre uma atividade/coisa a fazer, utilizando <strong>WHAT</strong> (O que)."
+            },
+            {
+                id: 35,
+                type: 'fill',
+                prompt: "___ is your school located?",
+                context: "Answer: On Green Street.",
+                answer: "Where",
+                explain: "Informa o endereço/local da escola ('na Rua Green'), requerendo <strong>WHERE</strong> (Onde)."
+            },
+            {
+                id: 36,
+                type: 'fill',
+                prompt: "___ do you brush your teeth?",
+                context: "Answer: In the morning and at night.",
+                answer: "When",
+                explain: "Refere-se aos momentos do dia em que a ação ocorre, utilizando <strong>WHEN</strong> (Quando)."
+            },
+            {
+                id: 37,
+                type: 'fill',
+                prompt: "___ made this delicious cake?",
+                context: "Answer: My grandmother made it.",
+                answer: "Who",
+                explain: "Identifica quem preparou o bolo ('minha avó'), exigindo a palavra <strong>WHO</strong> (Quem)."
+            },
+            {
+                id: 38,
+                type: 'fill',
+                prompt: "___ is the capital of France?",
+                context: "Answer: Paris.",
+                answer: "What",
+                explain: "Pergunta sobre qual é a cidade/informação específica ('Paris'), utilizando <strong>WHAT</strong> (Qual)."
+            },
+            {
+                id: 39,
+                type: 'fill',
+                prompt: "___ is my blue jacket?",
+                context: "Answer: Inside the closet.",
+                answer: "Where",
+                explain: "Indica a localização da jaqueta ('dentro do guarda-roupa'), usando <strong>WHERE</strong> (Onde)."
+            },
+            {
+                id: 40,
+                type: 'fill',
+                prompt: "___ is Halloween?",
+                context: "Answer: It is on October 31st.",
+                answer: "When",
+                explain: "Indica a data da comemoração ('31 de Outubro'), utilizando <strong>WHEN</strong> (Quando)."
+            }
+        ];
+
+        /* STATE VARIABLES */
+        let currentIndex = 0;
+        let userAnswers = new Array(quizData.length).fill(null);
+        let checkedState = new Array(quizData.length).fill(false);
+        let score = 0;
+
+        /* Initialize Lucide Icons */
+        window.onload = function() {
+            lucide.createIcons();
+            buildDrawerGrids();
+        };
+
+        function showStudyScreen() {
+            document.getElementById('studyScreen').classList.remove('hidden');
+            document.getElementById('quizScreen').classList.add('hidden');
+            document.getElementById('resultsScreen').classList.add('hidden');
+            document.getElementById('sidebarToggleBtn').classList.add('hidden');
+        }
+
+        function startQuiz() {
+            document.getElementById('studyScreen').classList.add('hidden');
+            document.getElementById('quizScreen').classList.remove('hidden');
+            document.getElementById('resultsScreen').classList.add('hidden');
+            document.getElementById('sidebarToggleBtn').classList.remove('hidden');
+            
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            const q = quizData[currentIndex];
+            
+            // Progress & Headers
+            document.getElementById('questionNum').innerText = `Questão ${currentIndex + 1} de ${quizData.length}`;
+            const progressPercent = ((currentIndex + 1) / quizData.length) * 100;
+            document.getElementById('progressBar').style.width = `${progressPercent}%`;
+
+            if (q.type === 'mc') {
+                document.getElementById('partBadge').innerText = "Parte 1: Múltipla Escolha";
+                document.getElementById('partBadge').className = "bg-indigo-100 text-indigo-700 font-bold px-3 py-1 rounded-xl text-xs sm:text-sm";
+            } else {
+                document.getElementById('partBadge').innerText = "Parte 2: Escrever Lacuna";
+                document.getElementById('partBadge').className = "bg-teal-100 text-teal-700 font-bold px-3 py-1 rounded-xl text-xs sm:text-sm";
+            }
+
+            // Context and Prompt
+            document.getElementById('contextText').innerText = q.context;
+            document.getElementById('questionPrompt').innerText = q.prompt;
+
+            const isChecked = checkedState[currentIndex];
+            const currentAnswer = userAnswers[currentIndex];
+
+            // Render Options or Input
+            const optionsContainer = document.getElementById('optionsContainer');
+            const fillContainer = document.getElementById('fillContainer');
+            const fillInput = document.getElementById('fillInput');
+
+            if (q.type === 'mc') {
+                optionsContainer.classList.remove('hidden');
+                fillContainer.classList.add('hidden');
+                optionsContainer.innerHTML = '';
+
+                q.options.forEach(opt => {
+                    const btn = document.createElement('button');
+                    btn.className = "w-full p-3.5 rounded-xl border-2 text-left font-bold text-base sm:text-lg flex justify-between items-center transition-all ";
+                    
+                    if (!isChecked) {
+                        if (currentAnswer === opt) {
+                            btn.className += "border-indigo-600 bg-indigo-50 text-indigo-700 shadow-sm";
+                        } else {
+                            btn.className += "border-slate-200 bg-white hover:border-indigo-300 hover:bg-slate-50 text-slate-700";
+                        }
+                    } else {
+                        // Question is checked
+                        if (opt === q.answer) {
+                            btn.className += "border-emerald-500 bg-emerald-50 text-emerald-800 font-extrabold";
+                        } else if (currentAnswer === opt && currentAnswer !== q.answer) {
+                            btn.className += "border-rose-500 bg-rose-50 text-rose-800 line-through";
+                        } else {
+                            btn.className += "border-slate-200 bg-slate-50 text-slate-400 opacity-60";
+                        }
+                    }
+
+                    btn.innerHTML = `<span>${opt}</span>`;
+                    
+                    if (isChecked && opt === q.answer) {
+                        btn.innerHTML += `<i data-lucide="check-circle" class="w-5 h-5 text-emerald-600"></i>`;
+                    } else if (isChecked && currentAnswer === opt && currentAnswer !== q.answer) {
+                        btn.innerHTML += `<i data-lucide="x-circle" class="w-5 h-5 text-rose-600"></i>`;
+                    }
+
+                    btn.disabled = isChecked;
+                    btn.onclick = () => selectOption(opt);
+                    optionsContainer.appendChild(btn);
+                });
+            } else {
+                // Fill in the blank mode
+                optionsContainer.classList.add('hidden');
+                fillContainer.classList.remove('hidden');
+
+                fillInput.value = currentAnswer || '';
+                fillInput.disabled = isChecked;
+
+                if (isChecked) {
+                    const isCorrect = (currentAnswer || '').trim().toLowerCase() === q.answer.toLowerCase();
+                    if (isCorrect) {
+                        fillInput.className = "w-full px-4 py-3 text-lg rounded-xl border-2 border-emerald-500 bg-emerald-50 text-emerald-800 font-extrabold uppercase";
+                    } else {
+                        fillInput.className = "w-full px-4 py-3 text-lg rounded-xl border-2 border-rose-500 bg-rose-50 text-rose-800 font-extrabold uppercase";
+                    }
+                } else {
+                    fillInput.className = "w-full px-4 py-3 text-lg rounded-xl border-2 border-slate-300 focus:border-indigo-500 focus:outline-none transition-colors heading-font uppercase";
+                    fillInput.oninput = (e) => {
+                        userAnswers[currentIndex] = e.target.value;
+                        updateDrawerStatus();
+                    };
+                }
+            }
+
+            // Feedback Box Handling
+            const feedbackBox = document.getElementById('feedbackBox');
+            if (isChecked) {
+                feedbackBox.classList.remove('hidden');
+                const isCorrect = (q.type === 'mc' && currentAnswer === q.answer) || 
+                                  (q.type === 'fill' && (currentAnswer || '').trim().toLowerCase() === q.answer.toLowerCase());
+
+                if (isCorrect) {
+                    feedbackBox.className = "rounded-2xl p-4 border bg-emerald-50 border-emerald-200 text-emerald-900";
+                    document.getElementById('feedbackIcon').className = "p-2 rounded-xl bg-emerald-500 text-white shrink-0";
+                    document.getElementById('feedbackTitle').innerText = "Resposta Correta! Muito bem! ✨";
+                } else {
+                    feedbackBox.className = "rounded-2xl p-4 border bg-rose-50 border-rose-200 text-rose-900";
+                    document.getElementById('feedbackIcon').className = "p-2 rounded-xl bg-rose-500 text-white shrink-0";
+                    document.getElementById('feedbackTitle').innerText = `Ops! A resposta correta era "${q.answer}".`;
+                }
+                document.getElementById('feedbackText').innerHTML = q.explain;
+            } else {
+                feedbackBox.classList.add('hidden');
+            }
+
+            // Button States
+            document.getElementById('prevBtn').disabled = currentIndex === 0;
+            const checkBtn = document.getElementById('checkBtn');
+            checkBtn.disabled = isChecked;
+            if (isChecked) {
+                checkBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            } else {
+                checkBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+            }
+
+            // Re-render Icons
+            lucide.createIcons();
+            updateScoreCounter();
+            updateDrawerStatus();
+        }
+
+        function selectOption(opt) {
+            if (checkedState[currentIndex]) return;
+            userAnswers[currentIndex] = opt;
+            renderQuestion();
+        }
+
+        function checkCurrentAnswer() {
+            const q = quizData[currentIndex];
+            let ans = userAnswers[currentIndex];
+
+            if (q.type === 'fill') {
+                const inputVal = document.getElementById('fillInput').value;
+                userAnswers[currentIndex] = inputVal;
+                ans = inputVal;
+            }
+
+            if (!ans || ans.trim() === '') {
+                alert("Por favor, selecione ou digite uma resposta antes de verificar!");
+                return;
+            }
+
+            checkedState[currentIndex] = true;
+            
+            // Check correctness
+            let isCorrect = false;
+            if (q.type === 'mc') {
+                isCorrect = ans === q.answer;
+            } else {
+                isCorrect = ans.trim().toLowerCase() === q.answer.toLowerCase();
+            }
+
+            if (isCorrect) {
+                score++;
+            }
+
+            renderQuestion();
+        }
+
+        function navigateQuestion(direction) {
+            const nextIdx = currentIndex + direction;
+            if (nextIdx >= 0 && nextIdx < quizData.length) {
+                currentIndex = nextIdx;
+                renderQuestion();
+            } else if (nextIdx >= quizData.length) {
+                showResults();
+            }
+        }
+
+        function updateScoreCounter() {
+            document.getElementById('scoreCounter').innerText = score;
+        }
+
+        function toggleSidebar() {
+            const drawer = document.getElementById('sidebarDrawer');
+            const overlay = document.getElementById('drawerOverlay');
+            
+            if (drawer.classList.contains('translate-x-full')) {
+                drawer.classList.remove('translate-x-full');
+                overlay.classList.remove('hidden');
+            } else {
+                drawer.classList.add('translate-x-full');
+                overlay.classList.add('hidden');
+            }
+        }
+
+        function buildDrawerGrids() {
+            const gridP1 = document.getElementById('drawerGridP1');
+            const gridP2 = document.getElementById('drawerGridP2');
+
+            gridP1.innerHTML = '';
+            gridP2.innerHTML = '';
+
+            quizData.forEach((q, idx) => {
+                const btn = document.createElement('button');
+                btn.id = `drawer-btn-${idx}`;
+                btn.innerText = idx + 1;
+                btn.onclick = () => {
+                    currentIndex = idx;
+                    renderQuestion();
+                    toggleSidebar();
+                };
+                btn.className = "w-10 h-10 rounded-xl font-bold text-sm flex items-center justify-center transition-all bg-slate-100 text-slate-700 hover:bg-indigo-100";
+
+                if (idx < 20) {
+                    gridP1.appendChild(btn);
+                } else {
+                    gridP2.appendChild(btn);
+                }
+            });
+        }
+
+        function updateDrawerStatus() {
+            quizData.forEach((q, idx) => {
+                const btn = document.getElementById(`drawer-btn-${idx}`);
+                if (!btn) return;
+
+                const isChecked = checkedState[idx];
+                const hasAnswer = userAnswers[idx] && userAnswers[idx].trim() !== '';
+
+                let bgClasses = "bg-slate-100 text-slate-700 border border-slate-200";
+
+                if (isChecked) {
+                    const ans = userAnswers[idx];
+                    const isCorrect = (q.type === 'mc' && ans === q.answer) ||
+                                      (q.type === 'fill' && (ans || '').trim().toLowerCase() === q.answer.toLowerCase());
+                    if (isCorrect) {
+                        bgClasses = "bg-emerald-500 text-white font-bold";
+                    } else {
+                        bgClasses = "bg-rose-500 text-white font-bold";
+                    }
+                } else if (hasAnswer) {
+                    bgClasses = "bg-amber-400 text-slate-900 font-bold";
+                }
+
+                if (idx === currentIndex) {
+                    bgClasses += " ring-4 ring-indigo-400 ring-offset-1";
+                }
+
+                btn.className = `w-10 h-10 rounded-xl text-sm flex items-center justify-center transition-all ${bgClasses}`;
+            });
+        }
+
+        function showResults() {
+            document.getElementById('quizScreen').classList.add('hidden');
+            document.getElementById('resultsScreen').classList.remove('hidden');
+            document.getElementById('sidebarToggleBtn').classList.add('hidden');
+
+            const percentage = Math.round((score / quizData.length) * 100);
+
+            document.getElementById('finalScore').innerText = `${score}/40`;
+            document.getElementById('finalPercentage').innerText = `${percentage}%`;
+
+            let badgeText = "Excelente!";
+            if (percentage < 50) {
+                badgeText = "Continue praticando!";
+            } else if (percentage < 80) {
+                badgeText = "Muito Bom!";
+            } else {
+                badgeText = "Super Campeão! ⭐";
+            }
+
+            document.getElementById('finalBadge').innerText = badgeText;
+            lucide.createIcons();
+        }
+
+        function restartQuiz() {
+            currentIndex = 0;
+            userAnswers = new Array(quizData.length).fill(null);
+            checkedState = new Array(quizData.length).fill(false);
+            score = 0;
+            startQuiz();
+        }
+    </script>
+</body>
+</html>
